@@ -1,4 +1,3 @@
-import sqlite3
 from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 from models.item import ItemModel
@@ -57,14 +56,8 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
-        
-        query = "SELECT * FROM items"
-        result = cursor.execute(query)
-        items = []
-        for row in result:
-            items.append({'name': row[0], 'price': row[1]})
-        
-        connection.close()
-        return {'items': items}
+        return {'items': [item.json() for item in ItemModel.query.all()]} # a list comprehension is used here
+        # return {'items': list(map(lambda x: x.json(), ItemModel.query.all()))}  # same results as above, but with a lambda instead
+        # the above statement is a mapping of functions to items or elements returned from the database
+        # the list comprehension method is more pythonic
+        # so, only use the map with lambda if you are programming in other languages or working with other people programming in other langu
