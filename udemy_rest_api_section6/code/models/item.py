@@ -1,6 +1,7 @@
 import sqlite3
+import db from db
 
-class ItemModel:
+class ItemModel(db.Model):
     def __init__(self, name, price):
         self.name = name
         self.price = price
