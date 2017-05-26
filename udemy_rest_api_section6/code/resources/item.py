@@ -61,7 +61,7 @@ class Item(Resource):
                 updated_item.update()
             except:
                 return {"message": "An error occurred while updating the item."}, 500
-        return updated_item      
+        return updated_item.json()
 
 
 class ItemList(Resource):
