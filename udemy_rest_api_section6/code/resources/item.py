@@ -49,11 +49,11 @@ class Item(Resource):
         data = Item.parser.parse_args()
         
         item = ItemModel.find_by_name(name)
-        updated_item = {'name': name, 'price': data['price']}
+        updated_item = ItemModel(name, data['price'])
         
         if item is None:
             try:
-                ItemModel.insert(updated_item)
+                updated_item.insert()
             except:
                 return {"message": "An error occurred while inserting the item."}, 500
         else:
