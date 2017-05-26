@@ -58,7 +58,7 @@ class Item(Resource):
                 return {"message": "An error occurred while inserting the item."}, 500
         else:
             try:
-                ItemModel.update(updated_item)
+                updated_item.update()
             except:
                 return {"message": "An error occurred while updating the item."}, 500
         return updated_item      
