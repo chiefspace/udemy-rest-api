@@ -24,9 +24,9 @@ class Item(Resource):
 
         data = Item.parser.parse_args()
 
-        item = {'name': name, 'price': data['price']}
+        item = ItemModel(name, data['price'])
         try:
-            ItemModel.insert(item)
+            item.insert()
         except:
             return {"message": "An error occurred while inserting the item."}, 500
         
