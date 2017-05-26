@@ -1,5 +1,5 @@
 import sqlite3
-import db from db
+from db import db
 
 class ItemModel(db.Model):
     __tablename__ = 'items'
