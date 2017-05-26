@@ -32,8 +32,7 @@ class ItemModel:
         connection.commit()
         connection.close()
         
-    @classmethod
-    def update(cls, item):
+    def update(self):
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
         
